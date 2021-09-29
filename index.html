@@ -1,1 +1,33 @@
-<h1>测试</h1>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>小工具</title>
+
+	</head>
+	<body>
+		<div id="original_time">
+			<p id="ymd"></p>
+			<script>
+		        var date = new Date()<!--获得日期数据-->
+		        var y = date.getFullYear();<!--年-->
+		        var m = date.getMonth()+1;<!--月，这里的月份必须要+1才是当前月份-->
+		        var d = date.getDate(); <!--日，getDay是获得当前星期几（0-6），getDate是获得当前日期-->
+		        var week = date.getDay();
+		        var hour = date.getHours();//获取当前时间的时
+		        var minute = date.getMinutes();//获取当前时间的分
+		        var second = date.getSeconds();//获取当前时间的秒
+		        document.getElementById("ymd").innerHTML = "更新时间："+y+"-"+m+"-"+d+"星期"+week+"时间为"+hour+":"+minute+":"+second;
+	    	</script>
+	 </div>
+	 <div>
+	 	<form>
+		First name: <input type="text" name="firstname"><br>
+		Last name: <input type="text" name="lastname"><br>
+		<button type="button">点我!</button><br>
+		Last name: <input type="text" name="lastname">
+		</form>
+	 </div>
+	</body>
+	
+</html>
