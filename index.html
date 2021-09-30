@@ -23,23 +23,36 @@
 	 <div>
 	 	<script type="text/javascript">
 	 		function add(){
+	 			var date = new Date()
 	 			n1 = Number(document.form1.txt1.value);
 	 			var a = 160 - n1;
 	 			var b = a * 8;
-	 			var liti_int = parseInt(b / 60);
-	 			var c = b % 60;
-	 			document.form1.txt3.value = c;
-	 			document.form1.txt4.value = liti_int;
+	 			var tili_hour = parseInt(b / 60);
+	 			var tili_minute = b % 60;
+	 			var tili_hour_hour = Number(date.getHours()) + tili_hour;
+	 			document.form1.txt3.value = tili_minute;
+	 			document.form1.txt4.value = tili_hour;
+	 			document.form1.txt5.value = date.getFullYear();
+	 			document.form1.txt6.value = date.getMonth()+1;
+	 			document.form1.txt7.value = date.getDate();
+	 			document.form1.txt8.value = date.getHours();
+	 			document.form1.txt9.value = date.getMinutes();
+	 			
+	 			
 	 		}
 	 	</script>
 	 	<form name = "form1">
-		<input type="text" name="txt1"><br>
+		<input type="text" name="txt1"><a>输入现有体力值</a><br>
 		<input type="button" onclick="add()" value="点我"></input><br>
 		<input type="text" name="txt4"><a>小时</a><br>
-		<input type="text" name="txt3"><a>分钟</a>
+		<input type="text" name="txt3"><a>分钟</a><br>
+		<input type="text" name="txt5"><a>年</a><br>
+		<input type="text" name="txt6"><a>月</a><br>
+		<input type="text" name="txt7"><a>日</a><br>
+		<input type="text" name="txt8"><a>小时</a><br>
+		<input type="text" name="txt9"><a>分钟</a>
 		</form>
 	 </div>
-	</body>
 	</body>
 	
 </html>
