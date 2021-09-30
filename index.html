@@ -23,7 +23,7 @@
 	 <div>
 	 	<script type="text/javascript">
 	 		function add(){
-	 			var date = new Date()
+	 			var date = new Date();
 	 			n1 = Number(document.form1.txt1.value);
 	 			var a = 160 - n1;
 	 			var b = a * 8;
@@ -37,6 +37,7 @@
 	 			document.form1.txt7.value = date.getDate();
 	 			document.form1.txt8.value = date.getHours();
 	 			document.form1.txt9.value = date.getMinutes();
+	 			document.form1.txt10.value = date.getSeconds();
 	 			
 	 			
 	 		}
@@ -50,7 +51,8 @@
 		<input type="text" name="txt6"><a>月</a><br>
 		<input type="text" name="txt7"><a>日</a><br>
 		<input type="text" name="txt8"><a>小时</a><br>
-		<input type="text" name="txt9"><a>分钟</a>
+		<input type="text" name="txt9"><a>分钟</a><br>
+		<input type="text" name="txt10"><a>秒</a><br>
 		</form>
 	 </div>
 	</body>
