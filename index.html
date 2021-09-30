@@ -21,11 +21,16 @@
 	    	</script>
 	 </div>
 	 <div>
-	 	<form>
-		First name: <input type="text" name="firstname"><br>
-		Last name: <input type="text" name="lastname"><br>
-		<button type="button">点我!</button><br>
-		Last name: <input type="text" name="lastname">
+	 	<script type="text/javascript">
+	 		function add(){
+	 			n1 = Number(document.form1.txt1.value);
+	 			document.form1.txt3.value = 160 - n1;
+	 		}
+	 	</script>
+	 	<form name = "form1">
+		<input type="text" name="txt1"><br>
+		<input type="button" onclick="add()" value="点我"></input><br>
+		<input type="text" name="txt3">
 		</form>
 	 </div>
 	</body>
