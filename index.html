@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>小工具</title>
+		<title>树脂160计算时间小工具</title>
 
 	</head>
 	<body>
@@ -23,15 +24,67 @@
 	 <div>
 	 	<script type="text/javascript">
 	 		function add(){
+	 			//new一个获取日期数据对象
 	 			var date = new Date();
+	 			
+	 			//输入树脂框的接口
 	 			n1 = Number(document.form1.txt1.value);
+	 			
+	 			//原神体力时间计算公式
 	 			var a = 160 - n1;
 	 			var b = a * 8;
-	 			var tili_hour = parseInt(b / 60);
-	 			var tili_minute = b % 60;
-	 			var tili_hour_hour = Number(date.getHours()) + tili_hour;
-	 			document.form1.txt3.value = tili_minute;
-	 			document.form1.txt4.value = tili_hour;
+	 			var shuzhi_hour = parseInt(b / 60);
+	 			var shuzhi_minute = b % 60;
+	 			
+	 			//获取瞬时时间，得到瞬时时间与原神树脂时间计算出时间相加
+	 			var year_year = Number(date.getFullYear());
+	 			var month_month = Number(date.getMonth()) + 1;
+	 			var shuzhi_day_day = Number(date.getDate());
+	 			var shuzhi_hour_hour = Number(date.getHours()) + shuzhi_hour;
+	 			var shuzhi_minute_minute = Number(date.getMinutes()) + shuzhi_minute;
+	 			
+	 			//判定分钟是否大于60。是，时+1。否，分钟。
+	 			if(shuzhi_minute_minute >= 60){
+	 				var a_shuzhi_minute_minute = shuzhi_minute_minute - 60;
+	 				var a1_shuzhi_hour_hour = 1;
+	 				
+	 			}else{
+	 				var a_shuzhi_minute_minute = shuzhi_minute_minute;
+	 				var a1_shuzhi_hour_hour = 0;
+	 			}
+	 			
+	 			//判定时是否大于24。是，天+1。否，时。
+	 			if(shuzhi_hour_hour >= 24){
+	 				var a_shuzhi_hour_hour = shuzhi_hour_hour -24;
+	 				var a1_shuzhi_day_day = 1;
+	 				
+	 			}else{
+	 				var a_shuzhi_hour_hour = shuzhi_hour_hour;
+	 				var a1_shuzhi_day_day = 0;
+	 			}
+	 			
+	 			//判定日是否大于31。是，月+1。否，日。
+	 			if(shuzhi_day_day >= 31){
+	 				var a_shuzhi_day_day = shuzhi_day_day -31;
+	 				var a1_month_month = 1;
+
+	 			}else{
+	 				var a_shuzhi_day_day = shuzhi_day_day;
+	 				var a1_month_month = 0;
+	 			}
+	 			
+	 			//判定月是否大于12。是，年+1。否，年。
+	 			if(month_month > 12){
+	 				var a_shuzhi_month_month = month_month - 12;
+	 			}else{
+	 				var a_shuzhi_month_month = month_month;
+	 			}
+	 			
+	 			
+	 			document.getElementById("ymd1").innerHTML = a_shuzhi_month_month+"月"+(a_shuzhi_day_day+a1_shuzhi_day_day)+"日"+(a_shuzhi_hour_hour+a1_shuzhi_hour_hour)+":"+a_shuzhi_minute_minute+":"+date.getSeconds();
+	 			
+	 			document.form1.txt3.value = shuzhi_minute;
+	 			document.form1.txt4.value = shuzhi_hour;
 	 			document.form1.txt5.value = date.getFullYear();
 	 			document.form1.txt6.value = date.getMonth()+1;
 	 			document.form1.txt7.value = date.getDate();
@@ -53,8 +106,12 @@
 		<input type="text" name="txt8"><a>小时</a><br>
 		<input type="text" name="txt9"><a>分钟</a><br>
 		<input type="text" name="txt10"><a>秒</a><br>
+		<a>树脂将在<p id="ymd1"></p></a>
+		
+
 		</form>
 	 </div>
 	</body>
 	
 </html>
+
