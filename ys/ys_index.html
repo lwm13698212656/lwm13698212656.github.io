@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8" />
+		<title>树脂160计算时间小工具</title>
+		<style>
+			.one {
+				border：1px solid;
+				padding:5px;
+			}
+			.time_box_1 {
+				position: relative;
+				width: 750px;
+				height: 750px;
+				border:5px solid rgba(0,0,0,0.3);
+				background: rgba(0,0,0,0.2);
+				padding: 30px;
+				margin: 0 auto;
+				left: auto;
+			}
+
+			.input_button {
+				background: 'rgba(255,255,255,0.5)';
+				color: 'rgba(255,255,255,1)';
+			}
+			body {
+			background-image: url("https://lwm13698212656.github.io/背景.jpg");
+			background-attachment:fixed; //这句就是固定背景图片固定 有滚动的话看上去就像是文本在滚动	
+			}
+			.ymd_{
+				position: fixed;
+				top: 0;
+			}
+			.time_box_2{
+				position: fixed;
+				top: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="original_time">
+			<p class="ymd_" id="ymd"></p>
+			<script>
+		        var date = new Date()<!--获得日期数据-->
+		        var y = date.getFullYear();<!--年-->
+		        var m = date.getMonth()+1;<!--月，这里的月份必须要+1才是当前月份-->
+		        var d = date.getDate(); <!--日，getDay是获得当前星期几（0-6），getDate是获得当前日期-->
+		        var week = date.getDay();
+		        var hour = date.getHours();//获取当前时间的时
+		        var minute = date.getMinutes();//获取当前时间的分
+		        var second = date.getSeconds();//获取当前时间的秒
+		        document.getElementById("ymd").innerHTML = "更新时间："+y+"-"+m+"-"+d+"星期"+week+"时间为"+hour+":"+minute+":"+second;
+	    	</script>
+	 	</div>
+	 	<div >
+		 	<script type="text/javascript">
+		 		function add(){
+		 			//new一个获取日期数据对象
+		 			var date = new Date();
+		 			
+		 			//输入树脂框的接口
+		 			n1 = Number(document.form1.txt1.value);
+		 			
+		 			//原神体力时间计算公式
+		 			if(n1 < 0 || n1 > 160){
+		 				alert("请输入0到160以内的数字");
+		 				return;
+		 			}else{
+		 				var a = 160 - n1;
+		 				var b = a * 8;
+		 				var shuzhi_hour = parseInt(b / 60);
+		 				var shuzhi_minute = b % 60;
+		 			}
+		 			
+
+		 			//获取瞬时时间，得到瞬时时间与原神树脂时间计算出时间相加
+		 			var year_year = Number(date.getFullYear());
+		 			var month_month = Number(date.getMonth()) + 1;
+		 			var shuzhi_day_day = Number(date.getDate());
+		 			var shuzhi_hour_hour = Number(date.getHours()) + shuzhi_hour;
+		 			var shuzhi_minute_minute = Number(date.getMinutes()) + shuzhi_minute;
+		 			
+		 			//判定分钟是否大于60。是，时+1。否，分钟。
+		 			if(shuzhi_minute_minute >= 60){
+		 				var a_shuzhi_minute_minute = shuzhi_minute_minute - 60;
+		 				var a1_shuzhi_hour_hour = 1;
+		 				
+		 			}else{
+		 				var a_shuzhi_minute_minute = shuzhi_minute_minute;
+		 				var a1_shuzhi_hour_hour = 0;
+		 			}
+		 			
+		 			//判定时是否大于24。是，天+1。否，时。
+		 			if(shuzhi_hour_hour >= 24){
+		 				var a_shuzhi_hour_hour = shuzhi_hour_hour -24;
+		 				var a1_shuzhi_day_day = 1;
+		 				
+		 			}else{
+		 				var a_shuzhi_hour_hour = shuzhi_hour_hour;
+		 				var a1_shuzhi_day_day = 0;
+		 			}
+		 			
+		 			//判定日是否大于31。是，月+1。否，日。
+		 			if(shuzhi_day_day >= 31){
+		 				var a_shuzhi_day_day = shuzhi_day_day -31;
+		 				var a1_month_month = 1;
+	
+		 			}else{
+		 				var a_shuzhi_day_day = shuzhi_day_day;
+		 				var a1_month_month = 0;
+		 			}
+		 			
+		 			//判定月是否大于12。是，年+1。否，年。
+		 			if(month_month > 12){
+		 				var a_shuzhi_month_month = month_month - 12;
+		 			}else{
+		 				var a_shuzhi_month_month = month_month;
+		 			}
+		 			
+		 			
+		 			document.getElementById("ymd1").innerHTML = a_shuzhi_month_month+"月"+(a_shuzhi_day_day+a1_shuzhi_day_day)+"日"+(a_shuzhi_hour_hour+a1_shuzhi_hour_hour)+":"+a_shuzhi_minute_minute+":"+date.getSeconds();
+		 			
+		 			document.form1.txt3.value = shuzhi_minute;
+		 			document.form1.txt4.value = shuzhi_hour;
+		 			document.form1.txt5.value = date.getFullYear();
+		 			document.form1.txt6.value = date.getMonth()+1;
+		 			document.form1.txt7.value = date.getDate();
+		 			document.form1.txt8.value = date.getHours();
+		 			document.form1.txt9.value = date.getMinutes();
+		 			document.form1.txt10.value = date.getSeconds();
+		 			
+		 			
+		 		}
+		 	</script>
+		 	<div  class="time_box_1">
+			 	<form name = "form1">
+			 		<a>输入现有树脂值</a><br />
+					<input type="number" name="txt1" style="width:190px" min="0" max="160" placeholder="请输入0到160以内的数字" ><br>
+					<input class="time_button" type="button" onclick="add()" value="点我计算时间"></input><br>
+					<div>
+						<a>剩余时长 ：</a><br />
+						<input class="input_button" name="txt4" style="width:30px" readonly="readonly"><a>小时</a>
+						<input name="txt3" style="width:30px" readonly="readonly"><a>分钟</a><br>
+					<div>
+						<a>现在时间：</a></br>
+						<input class="input_button" name="txt5" style="width:30px" readonly="readonly"><a>年</a>
+						<input class="input_button" name="txt6" style="width:30px" readonly="readonly"><a>月</a>
+						<input class="input_button" name="txt7" style="width:30px" readonly="readonly"><a>日</a>
+						<input class="input_button" name="txt8" style="width:30px" readonly="readonly"><a>小时</a>
+						<input class="input_button" name="txt9" style="width:30px" readonly="readonly"><a>分钟</a>
+						<input class="input_button" name="txt10" style="width:30px" readonly="readonly"><a>秒</a><br>
+						<div>
+							树脂将在:<p class="one" id="ymd1" style="width:150px"></p>
+						</div> 
+					</div>
+				</form>
+			</div>
+	 	</div>
+	 	<div class="time_box_2">
+	 	  <canvas id='canvas' width="400" height="300"></canvas>
+		  <script> 
+		    function rotateFun(){
+		       var now= new Date();//获取当前时间对象，对以后指针旋转很重要
+		 
+		       var ctx=document.getElementById("canvas").getContext("2d");//取的画布环境
+		 
+		       ctx.clearRect(0,0,800,600);//在开始之前都要清空画布，因为不清空就会所有的痕迹在画布上显示
+		 
+		       ctx.save();//第一个保存状态
+		       ctx.fillStyle='rgba(20,20,20,0.0)';
+		       ctx.fillRect(0,0,800,600);
+		       ctx.translate(200,150);//平移画布中心到中心 
+		       
+		       //画12个小时
+		       ctx.save();
+		       for (var i = 0; i < 12; i++) {
+		         ctx.strokeStyle='black';
+		         ctx.rotate(2*Math.PI/12);
+		         ctx.moveTo(120,0);
+		         ctx.lineTo(100,0);
+		         ctx.lineWidth=8;
+		         ctx.stroke();
+		       }
+		       ctx.restore(); 
+		 
+		       //画60个分钟
+		       ctx.save();
+		       for (var i = 0; i <60 ;i++) {
+		         ctx.strokeStyle='black';
+		         ctx.rotate(2*Math.PI/60);
+		         ctx.moveTo(115,0);
+		         ctx.lineTo(105,0);
+		         ctx.lineWidth=2;
+		         ctx.stroke();
+		       }
+		       ctx.restore();
+		       
+		       var hour=now.getHours();
+		       var min=now.getMinutes();
+		       var sec=now.getSeconds();
+		 
+		       //画秒针
+		       ctx.save();
+		       ctx.beginPath();
+		       ctx.rotate(sec*Math.PI/30);
+		       ctx.strokeStyle='black';
+		       ctx.lineWidth=4;
+		       ctx.moveTo(0,30);
+		       ctx.lineTo(0,-112);
+		       ctx.stroke();
+		       ctx.closePath();
+		       ctx.restore();
+		 
+		       //画分钟
+		       ctx.save();
+		       ctx.beginPath();
+		       ctx.rotate(min*Math.PI/30+sec*Math.PI/1800);
+		       ctx.strokeStyle='black';
+		       ctx.lineWidth=6;
+		       ctx.moveTo(0,28);
+		       ctx.lineTo(0,-83);
+		       ctx.stroke();
+		       ctx.closePath();
+		       ctx.restore();
+		 
+		       //画时钟
+		       ctx.save();
+		       ctx.beginPath();
+		       ctx.rotate(hour*Math.PI/6+min*Math.PI/360+sec*Math.PI/21600);
+		       ctx.strokeStyle='black';
+		       ctx.lineWidth=8;
+		       ctx.moveTo(0,26);
+		       ctx.lineTo(0,-63);
+		       ctx.stroke();
+		       ctx.closePath();
+		       ctx.beginPath();
+		       ctx.strokeStyle='blue';
+		       ctx.arc(0,0,126,0,2*Math.PI);
+		       ctx.stroke();
+		       ctx.closePath();
+		       ctx.restore();
+		       ctx.restore();
+		 
+		       window.requestAnimationFrame(rotateFun);
+		    }
+		 
+		    rotateFun();
+		 	</script>
+		</div>
+	</body>
+	
+</html>
